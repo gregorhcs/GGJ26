@@ -139,6 +139,24 @@ texture = ExtResource("1_hxl74")
 expand_mode = 3
 stretch_mode = 6
 
+[node name="LevelLoader" type="Control" parent="VBoxContainer/Control" unique_id=958787485 node_paths=PackedStringArray("Mask")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_mnbkb")
+Mask = NodePath("../BackgroundImage")
+Screens = Array[PackedScene]([ExtResource("9_h7lci"), ExtResource("7_nkpkg"), ExtResource("8_h7lci")])
+
+[node name="Level" parent="VBoxContainer/Control/LevelLoader" unique_id=1194766917 instance=ExtResource("9_h7lci")]
+layout_mode = 1
+
+[node name="ScAvatar" parent="VBoxContainer/Control" unique_id=148740442 instance=ExtResource("6_tte00")]
+position = Vector2(670, 490)
+
 [node name="Sunrays" type="ColorRect" parent="VBoxContainer/Control" unique_id=413293893]
 material = SubResource("ShaderMaterial_gdmih")
 layout_mode = 1
@@ -157,24 +175,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="LevelLoader" type="Control" parent="VBoxContainer/Control" unique_id=958787485 node_paths=PackedStringArray("Mask")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("6_mnbkb")
-Mask = NodePath("../BackgroundImage")
-Screens = Array[PackedScene]([ExtResource("9_h7lci"), ExtResource("7_nkpkg"), ExtResource("8_h7lci")])
-
-[node name="Level" parent="VBoxContainer/Control/LevelLoader" unique_id=1194766917 instance=ExtResource("9_h7lci")]
-layout_mode = 1
-
-[node name="ScAvatar" parent="VBoxContainer/Control" unique_id=148740442 instance=ExtResource("6_tte00")]
-position = Vector2(670, 490)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control" unique_id=472117419]
 layout_mode = 1
