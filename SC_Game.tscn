@@ -2,21 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://ce0ihiis55if2" path="res://Backgrounds/Summer1.png" id="1_hxl74"]
 [ext_resource type="Script" uid="uid://ddjmgcrewosc7" path="res://Scripts/GameDirector.gd" id="1_llf3c"]
-[ext_resource type="Texture2D" uid="uid://bljpams7k08k6" path="res://Backgrounds/Nature1.png" id="2_afm0w"]
-[ext_resource type="Texture2D" uid="uid://4s3hgji072jq" path="res://Backgrounds/Nature2.png" id="3_od4mt"]
-[ext_resource type="Texture2D" uid="uid://do64bb16d2wb6" path="res://Backgrounds/Nature3.png" id="4_toqui"]
 [ext_resource type="Shader" uid="uid://cpw7c07oynd44" path="res://Shaders/SH_Starfield.gdshader" id="5_qbhns"]
 [ext_resource type="Shader" uid="uid://d0yxr6psoc2h7" path="res://Shaders/SH_Fracture.gdshader" id="6_i7ulb"]
+[ext_resource type="Script" uid="uid://n1yodni642aa" path="res://Scripts/LevelLoader.gd" id="6_mnbkb"]
 [ext_resource type="PackedScene" uid="uid://bj77ng66yfap2" path="res://Prefabs/SC_Avatar.tscn" id="6_tte00"]
+[ext_resource type="PackedScene" uid="uid://dyhom5wvrpdff" path="res://Levels/SC_Level_02.tscn" id="7_nkpkg"]
+[ext_resource type="PackedScene" uid="uid://do1o26p5u3rq3" path="res://Levels/SC_Level_03.tscn" id="8_h7lci"]
 [ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="8_mnbkb"]
+[ext_resource type="PackedScene" uid="uid://dy2x71bcbr4ss" path="res://Levels/SC_Level_01.tscn" id="9_h7lci"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7ulb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnbkb"]
 shader = ExtResource("5_qbhns")
 shader_parameter/density = 0.0750000035625
 shader_parameter/cell_size = 12.0
 shader_parameter/star_size = 2.395
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnbkb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oledq"]
 shader = ExtResource("6_i7ulb")
 shader_parameter/CRACK_depth = 1
 shader_parameter/CRACK_zebra_scale = 1.0
@@ -28,7 +29,7 @@ shader_parameter/fracture_amount = 0.5650000268375
 shader_parameter/pixel_size = 386.36801830498
 shader_parameter/binary_threshold = 0.230000010925
 
-[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("AvatarControl", "Mask", "ScreenUIContainer", "CommandButtons")]
+[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,10 +37,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_llf3c")
+LevelLoader = NodePath("VBoxContainer/Control/LevelLoader")
 AvatarControl = NodePath("VBoxContainer/Control/ScAvatar")
-Mask = NodePath("VBoxContainer/Control/ColorRectTop/BackgroundImage")
-ScreenUIContainer = NodePath("VBoxContainer/Control/ColorRectTop/BackgroundImage")
-Screens = Array[Texture2D]([ExtResource("2_afm0w"), ExtResource("3_od4mt"), ExtResource("4_toqui")])
+Mask = NodePath("VBoxContainer/Control/BackgroundImage")
 CommandButtons = {
 0: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer/ButtonLook"),
 1: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer/ButtonWalk"),
@@ -61,8 +61,8 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 1
 
-[node name="ColorRectTop" type="ColorRect" parent="VBoxContainer/Control" unique_id=343019258]
-material = SubResource("ShaderMaterial_i7ulb")
+[node name="ColorRectTop" type="ColorRect" parent="VBoxContainer/Control" unique_id=870773617]
+material = SubResource("ShaderMaterial_mnbkb")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,8 +73,8 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 1
 
-[node name="BackgroundImage" type="TextureRect" parent="VBoxContainer/Control/ColorRectTop" unique_id=1478171983]
-material = SubResource("ShaderMaterial_mnbkb")
+[node name="BackgroundImage" type="TextureRect" parent="VBoxContainer/Control" unique_id=1734563491]
+material = SubResource("ShaderMaterial_oledq")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,10 +86,24 @@ texture = ExtResource("1_hxl74")
 expand_mode = 3
 stretch_mode = 6
 
+[node name="LevelLoader" type="Control" parent="VBoxContainer/Control" unique_id=958787485 node_paths=PackedStringArray("Mask")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_mnbkb")
+Mask = NodePath("../BackgroundImage")
+Screens = Array[PackedScene]([ExtResource("9_h7lci"), ExtResource("7_nkpkg"), ExtResource("8_h7lci")])
+
+[node name="Level" parent="VBoxContainer/Control/LevelLoader" unique_id=1194766917 instance=ExtResource("9_h7lci")]
+layout_mode = 1
+
 [node name="ScAvatar" parent="VBoxContainer/Control" unique_id=148740442 instance=ExtResource("6_tte00")]
 position = Vector2(670, 490)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control" unique_id=3630931]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control" unique_id=472117419]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +124,7 @@ TextToSay = Dictionary[int, String]({
 })
 ChangeLevelLeft = true
 
-[node name="ScInteractable_LevelChange_Right" parent="VBoxContainer/Control/HBoxContainer" unique_id=2081177871 instance=ExtResource("8_mnbkb")]
+[node name="ScInteractable_LevelChange_Right" parent="VBoxContainer/Control/HBoxContainer" unique_id=873706535 instance=ExtResource("8_mnbkb")]
 z_index = 2
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -121,29 +135,6 @@ TextToSay = Dictionary[int, String]({
 2: ""
 })
 ChangeLevelRight = true
-
-[node name="ScLevelChange_Cow" parent="VBoxContainer/Control" unique_id=1889477931 instance=ExtResource("8_mnbkb")]
-custom_minimum_size = Vector2(125, 75)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -341.0
-offset_top = 82.0
-offset_right = -216.0
-offset_bottom = 157.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(75, 75)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-TextToSay = Dictionary[int, String]({
-0: "She looks happy",
-1: "Yeah let's visit the Berta the Brown.",
-2: "Hey cow, having a good day in this world?"
-})
 
 [node name="ColorRectBot" type="ColorRect" parent="VBoxContainer" unique_id=301630333]
 layout_mode = 2
@@ -189,5 +180,4 @@ theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 28
 text = "Look"
 
-[connection signal="gui_input" from="VBoxContainer/Control/ColorRectTop" to="." method="_on_color_rect_top_gui_input"]
-[connection signal="gui_input" from="VBoxContainer/Control/ColorRectTop/BackgroundImage" to="." method="_on_background_image_gui_input"]
+[connection signal="level_changed" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_level_changed"]

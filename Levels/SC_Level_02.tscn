@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dyhom5wvrpdff"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_rgwga"]
+[ext_resource type="Texture2D" uid="uid://csk1mursnkrwy" path="res://Backgrounds/Summer2.png" id="2_lp33i"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_rgwga")
+Mask = ExtResource("2_lp33i")

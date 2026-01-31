@@ -1,15 +1,12 @@
 extends Control
 
+@export var LevelLoader : Node
 @export var AvatarControl : Node
 @export var Mask : TextureRect
-
-@export var ScreenUIContainer : TextureRect
-@export var Screens : Array[Texture2D]
 @export var CommandButtons : Dictionary[GameEnums.Command, Button]
 
 const Date = preload("res://Scripts/Enums.gd")
 
-var CurrentScreen = 0;
 var CurrentInsanity = 0;
 
 func increase_insanity(amount: int) -> void:
@@ -18,7 +15,6 @@ func increase_insanity(amount: int) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_update_screen(0)
 	for node in get_tree().get_nodes_in_group("interactables"):
 		node.is_available.connect(_on_interactable_available)
 		node.is_unavailable.connect(_on_interactable_unavailable)
@@ -37,9 +33,9 @@ func _on_interactable_request(node, command: GameEnums.Command):
 			
 	if command == GameEnums.Command.WALK:
 		if node.ChangeLevelLeft:
-			_update_screen((CurrentScreen - 1) % Screens.size())
+			LevelLoader.previous_screen()
 		elif node.ChangeLevelRight:
-			_update_screen((CurrentScreen + 1) % Screens.size())
+			LevelLoader.next_screen()
 		else:
 			AvatarControl.move_to(node.position + node.pivot_offset, func() : pass)
 		
@@ -54,8 +50,18 @@ func _on_background_image_gui_input(event: InputEvent) -> void:
 		AvatarControl.set_text("Okay..")
 		increase_insanity(1)
 
-func _update_screen(new_screen: int) -> void:
-	if new_screen != CurrentScreen:
-		ScreenUIContainer.texture = Screens[CurrentScreen]
-		CurrentScreen = new_screen
-		increase_insanity(3)
+func get_all_descendants(node: Node) -> Array:
+	var result := []
+	for child in node.get_children():
+		result.append(child)
+		result += get_all_descendants(child)
+	return result
+
+
+func _on_level_loader_level_changed(new_level) -> void:
+	increase_insanity(3)
+	for node in get_all_descendants(new_level):
+		if node.is_in_group("interactables"):
+			node.is_available.connect(_on_interactable_available)
+			node.is_unavailable.connect(_on_interactable_unavailable)
+			node.request.connect(_on_interactable_request)
