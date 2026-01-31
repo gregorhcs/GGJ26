@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://cpw7c07oynd44" path="res://Shaders/SH_Starfield.gdshader" id="5_qbhns"]
 [ext_resource type="Shader" uid="uid://d0yxr6psoc2h7" path="res://Shaders/SH_Fracture.gdshader" id="6_i7ulb"]
 [ext_resource type="PackedScene" uid="uid://bj77ng66yfap2" path="res://Prefabs/SC_Avatar.tscn" id="6_tte00"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_LevelChange.tscn" id="8_mnbkb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7ulb"]
 shader = ExtResource("5_qbhns")
@@ -20,7 +21,7 @@ shader = ExtResource("6_i7ulb")
 shader_parameter/CRACK_depth = 1
 shader_parameter/CRACK_zebra_scale = 1.0
 shader_parameter/CRACK_zebra_amp = 0.5690000270275
-shader_parameter/CRACK_profile = 0.698000033155
+shader_parameter/CRACK_profile = 0.0
 shader_parameter/CRACK_slope = 13.9610006156475
 shader_parameter/RATIO = 2.04200009373512
 shader_parameter/fracture_amount = 0.5650000268375
@@ -35,8 +36,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_llf3c")
-AvatarControl = NodePath("VBoxContainer/ColorRectTop/ScAvatar")
-ScreenUIContainer = NodePath("VBoxContainer/ColorRectTop/TextureRect")
+AvatarControl = NodePath("VBoxContainer/Control/ScAvatar")
+ScreenUIContainer = NodePath("VBoxContainer/Control/ColorRectTop/BackgroundImage")
 Screens = Array[Texture2D]([ExtResource("2_afm0w"), ExtResource("3_od4mt"), ExtResource("4_toqui")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=752364534]
@@ -48,13 +49,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="ColorRectTop" type="ColorRect" parent="VBoxContainer" unique_id=343019258]
-material = SubResource("ShaderMaterial_i7ulb")
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=680699202]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
+mouse_filter = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ColorRectTop" unique_id=1478171983]
+[node name="ColorRectTop" type="ColorRect" parent="VBoxContainer/Control" unique_id=343019258]
+material = SubResource("ShaderMaterial_i7ulb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 1
+
+[node name="BackgroundImage" type="TextureRect" parent="VBoxContainer/Control/ColorRectTop" unique_id=1478171983]
 material = SubResource("ShaderMaterial_mnbkb")
 layout_mode = 1
 anchors_preset = 15
@@ -67,8 +80,29 @@ texture = ExtResource("1_hxl74")
 expand_mode = 3
 stretch_mode = 6
 
-[node name="ScAvatar" parent="VBoxContainer/ColorRectTop" unique_id=148740442 instance=ExtResource("6_tte00")]
-position = Vector2(670, 492)
+[node name="ScAvatar" parent="VBoxContainer/Control" unique_id=148740442 instance=ExtResource("6_tte00")]
+position = Vector2(670, 490)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control" unique_id=3630931]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScLevelChange_Left" parent="VBoxContainer/Control/HBoxContainer" unique_id=1555687100 instance=ExtResource("8_mnbkb")]
+z_index = 2
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ScLevelChange_Right" parent="VBoxContainer/Control/HBoxContainer" unique_id=2081177871 instance=ExtResource("8_mnbkb")]
+z_index = 2
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="ColorRectBot" type="ColorRect" parent="VBoxContainer" unique_id=301630333]
 layout_mode = 2
@@ -121,11 +155,7 @@ theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 28
 text = "Grab"
 
-[node name="ButtonNext" type="Button" parent="VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer" unique_id=1935172839]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 28
-text = "Next"
-
-[connection signal="pressed" from="VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer/ButtonNext" to="." method="_on_button_next_pressed"]
+[connection signal="gui_input" from="VBoxContainer/Control/ColorRectTop" to="." method="_on_color_rect_top_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/Control/ColorRectTop/BackgroundImage" to="." method="_on_background_image_gui_input"]
+[connection signal="triggered" from="VBoxContainer/Control/HBoxContainer/ScLevelChange_Left" to="." method="_on_sc_level_change_left_triggered"]
+[connection signal="triggered" from="VBoxContainer/Control/HBoxContainer/ScLevelChange_Right" to="." method="_on_sc_level_change_right_triggered"]

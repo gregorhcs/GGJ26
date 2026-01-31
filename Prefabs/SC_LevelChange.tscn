@@ -1,3 +1,28 @@
 [gd_scene format=3 uid="uid://bt1mkr28sjdjb"]
 
-[node name="ScLevelChange" type="Node2D" unique_id=2081177871]
+[ext_resource type="Script" uid="uid://cndnf125ippai" path="res://Scripts/LevelChangeTrigger.gd" id="1_t1cv8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1cv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s18d6"]
+bg_color = Color(0.069, 0.082433335, 0.1, 0.40392157)
+
+[node name="ScLevelChange" type="Control" unique_id=1555687100 node_paths=PackedStringArray("TriggerButton")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t1cv8")
+TriggerButton = NodePath("Button")
+
+[node name="Button" type="Button" parent="." unique_id=543647863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t1cv8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s18d6")
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
