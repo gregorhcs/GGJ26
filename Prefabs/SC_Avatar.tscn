@@ -203,11 +203,25 @@ animations = [{
 "speed": 24.0
 }]
 
-[node name="ScAvatar" type="Node2D" unique_id=148740442 node_paths=PackedStringArray("AnimatedAvatarSprite")]
+[node name="ScAvatar" type="Node2D" unique_id=148740442 node_paths=PackedStringArray("AnimatedAvatarSprite", "SpeechText")]
 script = ExtResource("1_efpmx")
 AnimatedAvatarSprite = NodePath("AnimatedSprite2D")
+SpeechText = NodePath("RichTextLabel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=756895148]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dpbgw")
 offset = Vector2(0, -49)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=431760605]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -86.0
+offset_right = 554.0
+offset_bottom = -61.0
+grow_vertical = 0
+size_flags_horizontal = 0
+theme_override_constants/outline_size = 10
+text = "Say something, see something!"

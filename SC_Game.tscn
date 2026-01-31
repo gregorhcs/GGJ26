@@ -28,7 +28,7 @@ shader_parameter/fracture_amount = 0.5650000268375
 shader_parameter/pixel_size = 386.36801830498
 shader_parameter/binary_threshold = 0.230000010925
 
-[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("AvatarControl", "ScreenUIContainer")]
+[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("AvatarControl", "Mask", "ScreenUIContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_llf3c")
 AvatarControl = NodePath("VBoxContainer/Control/ScAvatar")
+Mask = NodePath("VBoxContainer/Control/ColorRectTop/BackgroundImage")
 ScreenUIContainer = NodePath("VBoxContainer/Control/ColorRectTop/BackgroundImage")
 Screens = Array[Texture2D]([ExtResource("2_afm0w"), ExtResource("3_od4mt"), ExtResource("4_toqui")])
 

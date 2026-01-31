@@ -111,10 +111,30 @@ void fragment() {
         U *= 1.5 * rot(0.37);
     }
 
-	float mask = clamp(O.r / fracture_amount, 0.0, 1.0);
-	mask = float(mask > binary_threshold);
+	
+	float r = distance(pix_uv, vec2(0.5));
+
+	// === High-frequency crack jitter ===
+	float j1 = fbm22(U * 1.5).x;
+	float j2 = fbm22(U * 3.5).x;
+	float j3 = fbm22(U * 7.0).x;
+	// Combine frequencies (weighted)
+	float jitter =
+	      j1 * 0.6
+	    + j2 * 0.3
+	    + j3 * 0.1;
+	jitter *= 0.6;
+	// Final warped radial mask
+	float mask_middle = CRACK_profile * CRACK_profile * 10.0 * (r + jitter);
+
+	// === Fracture mask ===
+	float mask_frac = clamp(O.r / fracture_amount, 0.0, 1.0);
+	mask_frac *= mask_middle;
+	mask_frac = float(mask_frac > binary_threshold);
+	
+	// === Final composition ===
     vec4 tex_color = texture(TEXTURE, uv);
-    COLOR = mix(tex_color, vec4(0.0), mask);
+    COLOR = mix(tex_color, vec4(0.0), mask_frac);
 	
 	if (CRACK_profile == 1.0)
 		COLOR = vec4(0.0);
