@@ -20,10 +20,12 @@ shader = ExtResource("6_i7ulb")
 shader_parameter/CRACK_depth = 1
 shader_parameter/CRACK_zebra_scale = 1.0
 shader_parameter/CRACK_zebra_amp = 0.5690000270275
-shader_parameter/CRACK_profile = 0.1450000068875
+shader_parameter/CRACK_profile = 0.698000033155
 shader_parameter/CRACK_slope = 13.9610006156475
 shader_parameter/RATIO = 2.04200009373512
-shader_parameter/fracture_amount = 0.0
+shader_parameter/fracture_amount = 0.5650000268375
+shader_parameter/pixel_size = 386.36801830498
+shader_parameter/binary_threshold = 0.230000010925
 
 [node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("AvatarControl", "ScreenUIContainer")]
 layout_mode = 3
@@ -63,7 +65,7 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("1_hxl74")
 expand_mode = 3
-stretch_mode = 5
+stretch_mode = 6
 
 [node name="ScAvatar" parent="VBoxContainer/ColorRectTop" unique_id=148740442 instance=ExtResource("6_tte00")]
 position = Vector2(670, 492)

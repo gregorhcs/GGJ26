@@ -9,6 +9,8 @@ uniform float CRACK_profile : hint_range(0.0, 1.0) = 1.0;       // Vertical fall
 uniform float CRACK_slope : hint_range(1.0, 100.0) = 50.0;       // Crack slope multiplier
 uniform float RATIO : hint_range(0.1, 10.0) = 1.0;               // Stone length/width ratio
 uniform float fracture_amount : hint_range(0.0, 1.0) = 0.0;      // 0 = intact, 1 = fully cracked
+uniform float pixel_size : hint_range(1.0, 1024.0) = 8.0; // size of pixels in screen space
+uniform float binary_threshold : hint_range(0.0, 1.0) = 0.3;
 
 // === Hash / Noise Functions ===
 float hash21(vec2 p) {
@@ -90,7 +92,8 @@ vec3 voronoiB(vec2 u) {
 // === Fragment ===
 void fragment() {
     vec2 uv = UV;
-    vec2 U = uv * 4.0; // scaling for Voronoi
+	vec2 pix_uv = floor(uv * pixel_size) / pixel_size;
+    vec2 U = pix_uv * 4.0;
 
     vec4 O = vec4(0.0);
     vec3 H0;
@@ -108,12 +111,11 @@ void fragment() {
         U *= 1.5 * rot(0.37);
     }
 
-    // === Fracture amount threshold ===
+	float mask = clamp(O.r / fracture_amount, 0.0, 1.0);
+	mask = float(mask > binary_threshold);
+    vec4 tex_color = texture(TEXTURE, uv);
+    COLOR = mix(tex_color, vec4(0.0), mask);
 	
-	// O.r ranges from ~0 (crack) to ~1 (intact)
-	// Invert mask so 0 = visible, 1 = transparent
-	float mask = clamp(O.r, 0.0, 1.0);
-
-	// Final color: fade texture to transparent
-	COLOR = mix(texture(TEXTURE, UV), vec4(0.0), mask);
+	if (CRACK_profile == 1.0)
+		COLOR = vec4(0.0);
 }
