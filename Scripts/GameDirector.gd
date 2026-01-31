@@ -17,13 +17,13 @@ func set_narrator_text(text: String) -> void:
 		NarratorTextLabel.text = text
 
 func increase_insanity(amount: int) -> void:
-	CurrentInsanity += amount;
+	CurrentInsanity = clamp(CurrentInsanity + amount, 0, 100);
 	Mask.material.set_shader_parameter("CRACK_profile", CurrentInsanity / 100.0)
 	if CurrentInsanity / 10 > CurrentInsanityPhase:
 		CurrentInsanityPhase = CurrentInsanity / 10
 		CrackAudioPlayer.pitch_scale = 0.5 + randf()
 		CrackAudioPlayer.play(0.0)
-	
+	print(CurrentInsanity)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

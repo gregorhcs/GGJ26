@@ -36,19 +36,35 @@ shader_parameter/binary_threshold = 0.2990000142025
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdmih"]
 shader = ExtResource("9_2g1mr")
+shader_parameter/ray_angle = -0.035
+shader_parameter/ray_position = 4.36
+shader_parameter/spread = 1.0
+shader_parameter/cutoff = -0.2149999627125
+shader_parameter/falloff = 0.0
+shader_parameter/edge_fade = 0.190000009025
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 9.43
+shader_parameter/ray2_density = 18.115
+shader_parameter/ray2_intensity = 0.0
+shader_parameter/color = Vector4(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 30.505
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g1mr"]
+shader = ExtResource("9_2g1mr")
 shader_parameter/ray_angle = -0.3
-shader_parameter/ray_position = -0.21
+shader_parameter/ray_position = -0.2
 shader_parameter/spread = 0.5
 shader_parameter/cutoff = 0.1
 shader_parameter/falloff = 0.2
 shader_parameter/edge_fade = 0.15
 shader_parameter/speed = 1.0
-shader_parameter/ray1_density = 4.65
-shader_parameter/ray2_density = 0.0
-shader_parameter/ray2_intensity = 0.0
-shader_parameter/color = Vector4(1, 0.9, 0.65, 0.8)
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Vector4(1, 1, 1, 0.53)
 shader_parameter/hdr = false
-shader_parameter/seed = 30.505
+shader_parameter/seed = 5.0
 
 [node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer")]
 layout_mode = 3
@@ -123,7 +139,7 @@ texture = ExtResource("1_hxl74")
 expand_mode = 3
 stretch_mode = 6
 
-[node name="FogWind" type="ColorRect" parent="VBoxContainer/Control" unique_id=1706115223]
+[node name="Sunrays" type="ColorRect" parent="VBoxContainer/Control" unique_id=413293893]
 material = SubResource("ShaderMaterial_gdmih")
 layout_mode = 1
 anchors_preset = 15
@@ -132,8 +148,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Godrays" type="ColorRect" parent="VBoxContainer/Control" unique_id=413293893]
-material = SubResource("ShaderMaterial_gdmih")
+[node name="Moonrays" type="ColorRect" parent="VBoxContainer/Control" unique_id=1481590445]
+visible = false
+material = SubResource("ShaderMaterial_2g1mr")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
