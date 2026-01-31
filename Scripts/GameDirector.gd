@@ -23,6 +23,7 @@ func increase_insanity(amount: int) -> void:
 		CurrentInsanityPhase = CurrentInsanity / 10
 		CrackAudioPlayer.pitch_scale = 0.5 + randf()
 		CrackAudioPlayer.play(0.0)
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
