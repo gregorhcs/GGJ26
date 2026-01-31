@@ -7,6 +7,10 @@ const Date = preload("res://Scripts/Enums.gd")
 	GameEnums.Command.LOOK : "", 
 	GameEnums.Command.TALK : "", 
 	GameEnums.Command.WALK : "" }
+@export var NarratorTextToSay: Dictionary[GameEnums.Command, String] = { 
+	GameEnums.Command.LOOK : "", 
+	GameEnums.Command.TALK : "", 
+	GameEnums.Command.WALK : "" }
 @export var Insanity: Dictionary[GameEnums.Command, int] = { 
 	GameEnums.Command.LOOK : 1, 
 	GameEnums.Command.TALK : 4, 

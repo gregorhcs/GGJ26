@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://do1o26p5u3rq3" path="res://Levels/SC_Level_03.tscn" id="8_h7lci"]
 [ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="8_mnbkb"]
 [ext_resource type="PackedScene" uid="uid://dy2x71bcbr4ss" path="res://Levels/SC_Level_01.tscn" id="9_h7lci"]
+[ext_resource type="AudioStream" uid="uid://cq8av71bcijg8" path="res://Audio/S_LostLoop.mp3" id="11_h7lci"]
+[ext_resource type="AudioStream" uid="uid://bqgf35iyohg8g" path="res://Audio/S_LostLoopBass.mp3" id="12_0nkn7"]
+[ext_resource type="AudioStream" uid="uid://x44bmvf606sc" path="res://Audio/S_LostLoopDrums.mp3" id="13_yyiq8"]
+[ext_resource type="AudioStream" uid="uid://cpaiyu4mkglca" path="res://Audio/S_Crack.wav" id="14_yyiq8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mnbkb"]
 shader = ExtResource("5_qbhns")
@@ -19,17 +23,17 @@ shader_parameter/star_size = 2.395
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oledq"]
 shader = ExtResource("6_i7ulb")
-shader_parameter/CRACK_depth = 1
+shader_parameter/CRACK_depth = 4
 shader_parameter/CRACK_zebra_scale = 1.0
-shader_parameter/CRACK_zebra_amp = 0.5690000270275
+shader_parameter/CRACK_zebra_amp = 0.2270000107825
 shader_parameter/CRACK_profile = 0.0
-shader_parameter/CRACK_slope = 13.9610006156475
-shader_parameter/RATIO = 2.04200009373512
-shader_parameter/fracture_amount = 0.5650000268375
-shader_parameter/pixel_size = 386.36801830498
-shader_parameter/binary_threshold = 0.230000010925
+shader_parameter/CRACK_slope = 79.9610037506475
+shader_parameter/RATIO = 2.2250001024276203
+shader_parameter/fracture_amount = 1.0
+shader_parameter/pixel_size = 254.0000120175
+shader_parameter/binary_threshold = 0.2990000142025
 
-[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons")]
+[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,10 +45,26 @@ LevelLoader = NodePath("VBoxContainer/Control/LevelLoader")
 AvatarControl = NodePath("VBoxContainer/Control/ScAvatar")
 Mask = NodePath("VBoxContainer/Control/BackgroundImage")
 CommandButtons = {
-0: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer/ButtonLook"),
-1: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer/ButtonWalk"),
-2: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer/ButtonTalk")
+0: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer/RichTextLabelLook"),
+1: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer/RichTextLabelWalk"),
+2: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer/RichTextLabelTalk")
 }
+NarratorTextLabel = NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer2/NarratorSpeechLabel")
+CrackAudioPlayer = NodePath("AudioStreamPlayer_Crack")
+
+[node name="AudioStreamPlayer_LostLoop" type="AudioStreamPlayer" parent="." unique_id=1231370830]
+stream = ExtResource("11_h7lci")
+autoplay = true
+
+[node name="AudioStreamPlayer_LostLoopBass" type="AudioStreamPlayer" parent="." unique_id=1682932850]
+stream = ExtResource("12_0nkn7")
+autoplay = true
+
+[node name="AudioStreamPlayer_LostLoopDrums" type="AudioStreamPlayer" parent="." unique_id=1816040135]
+stream = ExtResource("13_yyiq8")
+
+[node name="AudioStreamPlayer_Crack" type="AudioStreamPlayer" parent="." unique_id=203128951]
+stream = ExtResource("14_yyiq8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=752364534]
 layout_mode = 1
@@ -153,31 +173,67 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/ColorRectBot/MarginContainer" unique_id=653264021]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer" unique_id=1592189205]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
 
-[node name="ButtonWalk" type="Button" parent="VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer" unique_id=298806790]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3" unique_id=329257446]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 28
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="RichTextLabelWalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer" unique_id=1193404684]
+custom_minimum_size = Vector2(77, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 text = "Walk"
+fit_content = true
 
-[node name="ButtonTalk" type="Button" parent="VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer" unique_id=125665242]
+[node name="RichTextLabelTalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer" unique_id=1468253758]
+custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 28
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 text = "Talk"
+fit_content = true
 
-[node name="ButtonLook" type="Button" parent="VBoxContainer/ColorRectBot/MarginContainer/HFlowContainer" unique_id=242030701]
+[node name="RichTextLabelLook" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer" unique_id=577303019]
+custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 28
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
 text = "Look"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3" unique_id=157282270]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="NarratorSpeechLabel" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer2" unique_id=1619284738]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+text = "Life was good. Mary lived had arrived in a place of well-faring and peace. Many envied her for her luck."
 
 [connection signal="level_changed" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_level_changed"]

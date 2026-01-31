@@ -3,15 +3,26 @@ extends Control
 @export var LevelLoader : Node
 @export var AvatarControl : Node
 @export var Mask : TextureRect
-@export var CommandButtons : Dictionary[GameEnums.Command, Button]
+@export var CommandButtons : Dictionary[GameEnums.Command, RichTextLabel]
+@export var NarratorTextLabel : RichTextLabel
+@export var CrackAudioPlayer : AudioStreamPlayer
 
 const Date = preload("res://Scripts/Enums.gd")
 
 var CurrentInsanity = 0;
+var CurrentInsanityPhase = 0;
+
+func set_narrator_text(text: String) -> void:
+	if !text.is_empty():
+		NarratorTextLabel.text = text
 
 func increase_insanity(amount: int) -> void:
 	CurrentInsanity += amount;
 	Mask.material.set_shader_parameter("CRACK_profile", CurrentInsanity / 100.0)
+	if CurrentInsanity / 10 > CurrentInsanityPhase:
+		CurrentInsanityPhase = CurrentInsanity / 10
+		CrackAudioPlayer.pitch_scale = 0.5 + randf()
+		CrackAudioPlayer.play(0.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,11 +33,11 @@ func _ready() -> void:
 		
 func _on_interactable_available(node, command: GameEnums.Command):
 	print("Interactable Available:", node.name, " - ", command)
-	CommandButtons[command].add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
+	CommandButtons[command].add_theme_color_override("default_color", Color(1.0, 1.0, 1.0))
 		
 func _on_interactable_unavailable(node, command: GameEnums.Command):
 	print("Interactable Unavailable:", node.name, " - ", command)
-	CommandButtons[command].add_theme_color_override("font_color", Color("80ca51"))
+	CommandButtons[command].add_theme_color_override("default_color", Color("80ca51"))
 		
 func _on_interactable_request(node, command: GameEnums.Command):
 	print("Interactable Request:", node.name, " - ", command)
@@ -41,6 +52,8 @@ func _on_interactable_request(node, command: GameEnums.Command):
 		
 	if !node.TextToSay[command].is_empty():
 		AvatarControl.set_text(node.TextToSay[command])
+	if !node.NarratorTextToSay[command].is_empty():
+		set_narrator_text(node.NarratorTextToSay[command])
 	
 	increase_insanity(node.Insanity[command])
 	
