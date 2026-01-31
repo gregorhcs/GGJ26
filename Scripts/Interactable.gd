@@ -1,6 +1,6 @@
 extends Node
 
-const Date = preload("res://Scripts/Commands.gd")
+const Date = preload("res://Scripts/Enums.gd")
 
 @export var TriggerButton : Button
 @export var TextToSay: Dictionary[GameEnums.Command, String] = { 

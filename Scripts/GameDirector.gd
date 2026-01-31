@@ -7,7 +7,7 @@ extends Control
 @export var Screens : Array[Texture2D]
 @export var CommandButtons : Dictionary[GameEnums.Command, Button]
 
-const Date = preload("res://Scripts/Commands.gd")
+const Date = preload("res://Scripts/Enums.gd")
 
 var CurrentScreen = 0;
 var CurrentInsanity = 0;
@@ -25,15 +25,15 @@ func _ready() -> void:
 		node.request.connect(_on_interactable_request)
 		
 func _on_interactable_available(node, command: GameEnums.Command):
-	print("Available:", node.name, " - ", command)
+	print("Interactable Available:", node.name, " - ", command)
 	CommandButtons[command].add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
 		
 func _on_interactable_unavailable(node, command: GameEnums.Command):
-	print("Unavailable:", node.name, " - ", command)
+	print("Interactable Unavailable:", node.name, " - ", command)
 	CommandButtons[command].add_theme_color_override("font_color", Color("80ca51"))
 		
 func _on_interactable_request(node, command: GameEnums.Command):
-	print("Request:", node.name, " - ", command)
+	print("Interactable Request:", node.name, " - ", command)
 			
 	if command == GameEnums.Command.WALK:
 		if node.ChangeLevelLeft:

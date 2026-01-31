@@ -123,12 +123,22 @@ TextToSay = Dictionary[int, String]({
 ChangeLevelRight = true
 
 [node name="ScLevelChange_Cow" parent="VBoxContainer/Control" unique_id=1889477931 instance=ExtResource("8_mnbkb")]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 339.0
-offset_right = 359.0
-offset_bottom = 417.0
+custom_minimum_size = Vector2(125, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -341.0
+offset_top = 82.0
+offset_right = -216.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(75, 75)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 TextToSay = Dictionary[int, String]({
 0: "She looks happy",
 1: "Yeah let's visit the Berta the Brown.",
