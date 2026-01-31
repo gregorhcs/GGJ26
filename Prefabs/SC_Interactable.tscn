@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://bt1mkr28sjdjb"]
 
-[ext_resource type="Script" uid="uid://cndnf125ippai" path="res://Scripts/LevelChangeTrigger.gd" id="1_t1cv8"]
+[ext_resource type="Script" uid="uid://cndnf125ippai" path="res://Scripts/Interactable.gd" id="1_ot7op"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1cv8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s18d6"]
 bg_color = Color(0.069, 0.082433335, 0.1, 0.40392157)
 
-[node name="ScLevelChange" type="Control" unique_id=1555687100 node_paths=PackedStringArray("TriggerButton")]
+[node name="ScLevelChange" type="Control" unique_id=1555687100 node_paths=PackedStringArray("TriggerButton") groups=["interactables"]]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_t1cv8")
+script = ExtResource("1_ot7op")
 TriggerButton = NodePath("Button")
 
 [node name="Button" type="Button" parent="." unique_id=543647863]
@@ -23,6 +23,7 @@ grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t1cv8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s18d6")
 
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -4,11 +4,12 @@ extends Node2D
 @export var SpeechText: RichTextLabel
 
 var current_goal = Vector2(0, 0)
+var current_callback: Callable
 var is_moving = false
 
-func move_to(position: Vector2) -> void:
+func move_to(position: Vector2, callback: Callable) -> void:
 	current_goal = position
-	set_text("Okay..")
+	current_callback = callback
 
 func set_text(text: String) -> void:
 	SpeechText.text = text
@@ -32,4 +33,6 @@ func _process(delta: float) -> void:
 		is_moving = true
 		AnimatedAvatarSprite.flip_h = delta_to_goal.x > 0
 	else:
+		if is_moving and current_callback.is_valid():
+			current_callback.call()
 		is_moving = false

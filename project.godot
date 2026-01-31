@@ -15,6 +15,10 @@ run/main_scene="uid://cvy56brjoeda"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+interactables=""
+
 [input]
 
 world_act_at={
