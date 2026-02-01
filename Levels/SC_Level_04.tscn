@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://35pxljr18l04"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_yr62q"]
+[ext_resource type="Texture2D" uid="uid://cdybjr8l27x4a" path="res://Backgrounds/Summer4.png" id="2_yr62q"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="3_5ku08"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_yr62q")
+Mask = ExtResource("2_yr62q")
+NarratorText = "My times the family had trodden these paths, heading to the lake, swimming there. The sky was always blue and pure, just as the family."
+AvatarText = "My head hurts.."
+
+[node name="ScInteractable_Road" parent="." unique_id=1555687100 instance=ExtResource("3_5ku08")]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 484.0
+offset_right = 934.0
+offset_bottom = 518.0
+TextToSay = Dictionary[int, String]({
+0: "The can't force me to walk this road no more.",
+1: "",
+2: ""
+})

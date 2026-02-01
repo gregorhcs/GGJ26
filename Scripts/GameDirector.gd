@@ -6,6 +6,11 @@ extends Control
 @export var CommandButtons : Dictionary[GameEnums.Command, RichTextLabel]
 @export var NarratorTextLabel : RichTextLabel
 @export var CrackAudioPlayer : AudioStreamPlayer
+@export var BackgroundBlack : ColorRect
+@export var BackgroundStars : ColorRect
+@export var BackgroundSunrays : ColorRect
+@export var BackgroundMoonrays : ColorRect
+@export var LevelChangeTrigger : Control
 
 const Date = preload("res://Scripts/Enums.gd")
 
@@ -16,6 +21,9 @@ func set_narrator_text(text: String) -> void:
 	if !text.is_empty():
 		NarratorTextLabel.text = text
 
+func clear_narrator_text() -> void:
+	NarratorTextLabel.text = ""
+
 func increase_insanity(amount: int) -> void:
 	CurrentInsanity = clamp(CurrentInsanity + amount, 0, 100);
 	Mask.material.set_shader_parameter("CRACK_profile", CurrentInsanity / 100.0)
@@ -23,8 +31,14 @@ func increase_insanity(amount: int) -> void:
 		CurrentInsanityPhase = CurrentInsanity / 10
 		CrackAudioPlayer.pitch_scale = 0.5 + randf()
 		CrackAudioPlayer.play(0.0)
-	print(CurrentInsanity)
-
+	print("Insanity: ", CurrentInsanity)
+	
+	if CurrentInsanity == 100:
+		BackgroundSunrays.visible = false
+		Mask.visible = false
+		LevelChangeTrigger.visible = false
+		AvatarControl.clear_text()
+		set_narrator_text("In her insanity, she tried to go places no human dared to go. Why didn't she stay in peace? Why did she have to go?")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("interactables"):
@@ -34,7 +48,7 @@ func _ready() -> void:
 		
 func _on_interactable_available(node, command: GameEnums.Command):
 	print("Interactable Available:", node.name, " - ", command)
-	CommandButtons[command].add_theme_color_override("default_color", Color(1.0, 1.0, 1.0))
+	CommandButtons[command].add_theme_color_override("default_color", Color(1.0, 1.0, 0.0, 1.0))
 		
 func _on_interactable_unavailable(node, command: GameEnums.Command):
 	print("Interactable Unavailable:", node.name, " - ", command)
@@ -73,9 +87,22 @@ func get_all_descendants(node: Node) -> Array:
 
 
 func _on_level_loader_level_changed(new_level) -> void:
-	increase_insanity(3)
 	for node in get_all_descendants(new_level):
 		if node.is_in_group("interactables"):
 			node.is_available.connect(_on_interactable_available)
 			node.is_unavailable.connect(_on_interactable_unavailable)
 			node.request.connect(_on_interactable_request)
+	if !new_level.NarratorText.is_empty():
+		set_narrator_text(new_level.NarratorText)
+	if !new_level.AvatarText.is_empty():
+		AvatarControl.set_text(new_level.AvatarText)
+
+
+func _on_level_loader_tried_pass_level_array_bound() -> void:
+	BackgroundSunrays.visible = false
+	BackgroundMoonrays.visible = true
+	Mask.visible = false
+	BackgroundBlack.visible = false
+	LevelChangeTrigger.visible = false
+	AvatarControl.set_text("Am I - free?")
+	clear_narrator_text()

@@ -1,20 +1,33 @@
 [gd_scene format=3 uid="uid://cvy56brjoeda"]
 
-[ext_resource type="Texture2D" uid="uid://ce0ihiis55if2" path="res://Backgrounds/Summer1.png" id="1_hxl74"]
 [ext_resource type="Script" uid="uid://ddjmgcrewosc7" path="res://Scripts/GameDirector.gd" id="1_llf3c"]
 [ext_resource type="Shader" uid="uid://cpw7c07oynd44" path="res://Shaders/SH_Starfield.gdshader" id="5_qbhns"]
 [ext_resource type="Shader" uid="uid://d0yxr6psoc2h7" path="res://Shaders/SH_Fracture.gdshader" id="6_i7ulb"]
 [ext_resource type="Script" uid="uid://n1yodni642aa" path="res://Scripts/LevelLoader.gd" id="6_mnbkb"]
 [ext_resource type="PackedScene" uid="uid://bj77ng66yfap2" path="res://Prefabs/SC_Avatar.tscn" id="6_tte00"]
 [ext_resource type="PackedScene" uid="uid://dyhom5wvrpdff" path="res://Levels/SC_Level_02.tscn" id="7_nkpkg"]
+[ext_resource type="Texture2D" uid="uid://hysy6bpgs5b4" path="res://Backgrounds/Nature7.png" id="8_2m55x"]
 [ext_resource type="PackedScene" uid="uid://do1o26p5u3rq3" path="res://Levels/SC_Level_03.tscn" id="8_h7lci"]
 [ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="8_mnbkb"]
 [ext_resource type="Shader" uid="uid://dxmwrolj8pqcw" path="res://Shaders/SH_Godrays.gdshader" id="9_2g1mr"]
 [ext_resource type="PackedScene" uid="uid://dy2x71bcbr4ss" path="res://Levels/SC_Level_01.tscn" id="9_h7lci"]
 [ext_resource type="AudioStream" uid="uid://cq8av71bcijg8" path="res://Audio/S_LostLoop.mp3" id="11_h7lci"]
 [ext_resource type="AudioStream" uid="uid://bqgf35iyohg8g" path="res://Audio/S_LostLoopBass.mp3" id="12_0nkn7"]
+[ext_resource type="PackedScene" uid="uid://35pxljr18l04" path="res://Levels/SC_Level_04.tscn" id="13_2m55x"]
 [ext_resource type="AudioStream" uid="uid://x44bmvf606sc" path="res://Audio/S_LostLoopDrums.mp3" id="13_yyiq8"]
+[ext_resource type="PackedScene" uid="uid://dg1a7r2d4ndox" path="res://Levels/SC_Level_05.tscn" id="14_joo0g"]
 [ext_resource type="AudioStream" uid="uid://cpaiyu4mkglca" path="res://Audio/S_Crack.wav" id="14_yyiq8"]
+[ext_resource type="PackedScene" uid="uid://3qj6qtdqodqp" path="res://Levels/SC_Level_06.tscn" id="15_n8vhl"]
+[ext_resource type="FontFile" uid="uid://d2lq7f6wt2215" path="res://Amarante-Regular.ttf" id="16_gdmih"]
+[ext_resource type="PackedScene" uid="uid://dyipmofhld2kq" path="res://Levels/SC_Level_07.tscn" id="16_ng7nl"]
+[ext_resource type="PackedScene" uid="uid://dxdh6htf8kj32" path="res://Levels/SC_Level_08.tscn" id="17_binv8"]
+[ext_resource type="PackedScene" uid="uid://c2v5ix0a8sejp" path="res://Levels/SC_Level_09.tscn" id="18_44gmh"]
+[ext_resource type="PackedScene" uid="uid://bw801frqo6oem" path="res://Levels/SC_Level_10.tscn" id="19_crfl4"]
+[ext_resource type="PackedScene" uid="uid://dgrrfa6806mfs" path="res://Levels/SC_Level_11.tscn" id="20_uwf21"]
+[ext_resource type="PackedScene" uid="uid://cbo8p6semgurs" path="res://Levels/SC_Level_12.tscn" id="21_cojy8"]
+[ext_resource type="PackedScene" uid="uid://bjfjocibrmtp1" path="res://Levels/SC_Level_13.tscn" id="22_e3aha"]
+[ext_resource type="PackedScene" uid="uid://lnnels7oe6af" path="res://Levels/SC_Level_14.tscn" id="23_m736i"]
+[ext_resource type="PackedScene" uid="uid://bxoekrv6mf72t" path="res://Levels/SC_Level_15.tscn" id="24_dv6xv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mnbkb"]
 shader = ExtResource("5_qbhns")
@@ -66,7 +79,7 @@ shader_parameter/color = Vector4(1, 1, 1, 0.53)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
-[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer")]
+[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer", "BackgroundBlack", "BackgroundStars", "BackgroundSunrays", "BackgroundMoonrays", "LevelChangeTrigger")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,9 +97,15 @@ CommandButtons = {
 }
 NarratorTextLabel = NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer2/NarratorSpeechLabel")
 CrackAudioPlayer = NodePath("AudioStreamPlayer_Crack")
+BackgroundBlack = NodePath("VBoxContainer/Control/ColorRectBlack")
+BackgroundStars = NodePath("VBoxContainer/Control/ColorRectStars")
+BackgroundSunrays = NodePath("VBoxContainer/Control/Sunrays")
+BackgroundMoonrays = NodePath("VBoxContainer/Control/Moonrays")
+LevelChangeTrigger = NodePath("VBoxContainer/Control/HBoxContainer/ScInteractable_LevelChange_Right")
 
 [node name="AudioStreamPlayer_LostLoop" type="AudioStreamPlayer" parent="." unique_id=1231370830]
 stream = ExtResource("11_h7lci")
+pitch_scale = 0.6
 autoplay = true
 
 [node name="AudioStreamPlayer_LostLoopBass" type="AudioStreamPlayer" parent="." unique_id=1682932850]
@@ -95,6 +114,9 @@ autoplay = true
 
 [node name="AudioStreamPlayer_LostLoopDrums" type="AudioStreamPlayer" parent="." unique_id=1816040135]
 stream = ExtResource("13_yyiq8")
+volume_db = -8.703
+pitch_scale = 0.27
+autoplay = true
 
 [node name="AudioStreamPlayer_Crack" type="AudioStreamPlayer" parent="." unique_id=203128951]
 stream = ExtResource("14_yyiq8")
@@ -114,7 +136,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 1
 
-[node name="ColorRectTop" type="ColorRect" parent="VBoxContainer/Control" unique_id=870773617]
+[node name="ColorRectStars" type="ColorRect" parent="VBoxContainer/Control" unique_id=870773617]
 material = SubResource("ShaderMaterial_mnbkb")
 layout_mode = 1
 anchors_preset = 15
@@ -126,6 +148,18 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 1
 
+[node name="ColorRectBlack" type="ColorRect" parent="VBoxContainer/Control" unique_id=1409622622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
 [node name="BackgroundImage" type="TextureRect" parent="VBoxContainer/Control" unique_id=1734563491]
 material = SubResource("ShaderMaterial_oledq")
 layout_mode = 1
@@ -135,7 +169,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("1_hxl74")
+texture = ExtResource("8_2m55x")
 expand_mode = 3
 stretch_mode = 6
 
@@ -146,13 +180,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("6_mnbkb")
 Mask = NodePath("../BackgroundImage")
-Screens = Array[PackedScene]([ExtResource("9_h7lci"), ExtResource("7_nkpkg"), ExtResource("8_h7lci")])
-
-[node name="Level" parent="VBoxContainer/Control/LevelLoader" unique_id=1194766917 instance=ExtResource("9_h7lci")]
-layout_mode = 1
+Screens = Array[PackedScene]([ExtResource("9_h7lci"), ExtResource("7_nkpkg"), ExtResource("8_h7lci"), ExtResource("13_2m55x"), ExtResource("14_joo0g"), ExtResource("15_n8vhl"), ExtResource("16_ng7nl"), ExtResource("17_binv8"), ExtResource("18_44gmh"), ExtResource("19_crfl4"), ExtResource("20_uwf21"), ExtResource("21_cojy8"), ExtResource("22_e3aha"), ExtResource("23_m736i"), ExtResource("24_dv6xv")])
 
 [node name="ScAvatar" parent="VBoxContainer/Control" unique_id=148740442 instance=ExtResource("6_tte00")]
 position = Vector2(670, 490)
@@ -165,6 +196,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Moonrays" type="ColorRect" parent="VBoxContainer/Control" unique_id=1481590445]
 visible = false
@@ -175,6 +207,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control" unique_id=472117419]
 layout_mode = 1
@@ -185,18 +218,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ScInteractable_LevelChangeLeft" parent="VBoxContainer/Control/HBoxContainer" unique_id=1555687100 instance=ExtResource("8_mnbkb")]
-z_index = 2
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-TextToSay = Dictionary[int, String]({
-0: "That's towards the mountains?",
-1: "So far...",
-2: ""
-})
-ChangeLevelLeft = true
-
 [node name="ScInteractable_LevelChange_Right" parent="VBoxContainer/Control/HBoxContainer" unique_id=873706535 instance=ExtResource("8_mnbkb")]
 z_index = 2
 custom_minimum_size = Vector2(50, 0)
@@ -204,7 +225,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 TextToSay = Dictionary[int, String]({
 0: "Meadows and streams.",
-1: "My eyes hurt",
+1: "",
 2: ""
 })
 ChangeLevelRight = true
@@ -239,6 +260,7 @@ custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_fonts/normal_font = ExtResource("16_gdmih")
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
@@ -252,6 +274,7 @@ custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_fonts/normal_font = ExtResource("16_gdmih")
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
@@ -265,6 +288,7 @@ custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_fonts/normal_font = ExtResource("16_gdmih")
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
@@ -282,6 +306,7 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
+theme_override_fonts/normal_font = ExtResource("16_gdmih")
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/bold_italics_font_size = 20
@@ -290,3 +315,4 @@ theme_override_font_sizes/mono_font_size = 20
 text = "Life was good. Mary lived had arrived in a place of well-faring and peace. Many envied her for her luck."
 
 [connection signal="level_changed" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_level_changed"]
+[connection signal="tried_pass_level_array_bound" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_tried_pass_level_array_bound"]

@@ -4,10 +4,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1cv8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s18d6"]
-bg_color = Color(0.069, 0.082433335, 0.1, 0.40392157)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot7op"]
+bg_color = Color(0.2, 0.2, 0.2, 0.40392157)
 
-[node name="ScLevelChange" type="Control" unique_id=1555687100 node_paths=PackedStringArray("TriggerButton") groups=["interactables"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s18d6"]
+bg_color = Color(0.31764707, 0.31764707, 0.31764707, 0.40392157)
+
+[node name="ScInteractable" type="Control" unique_id=1555687100 node_paths=PackedStringArray("TriggerButton") groups=["interactables"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ot7op")
@@ -21,6 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t1cv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ot7op")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s18d6")
 
 [connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]

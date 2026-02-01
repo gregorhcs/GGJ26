@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bw801frqo6oem"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_3w017"]
+[ext_resource type="Texture2D" uid="uid://4s3hgji072jq" path="res://Backgrounds/Nature2.png" id="2_3w017"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_3w017")
+Mask = ExtResource("2_3w017")
+NarratorText = "No warm hearth to curl up on, no candlelight gently guiding her to sleep. Only cold, wet earth."
+AvatarText = "THE FIRE IS GONE! It can't reach me"

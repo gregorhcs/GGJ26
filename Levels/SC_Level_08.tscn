@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dxdh6htf8kj32"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_3jxdk"]
+[ext_resource type="Texture2D" uid="uid://dg33t41jrl875" path="res://Backgrounds/Summer8.png" id="2_3jxdk"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_3jxdk")
+Mask = ExtResource("2_3jxdk")
+NarratorText = "Few of the kids had ever been so far, for the lands beyond the farmlands borders where always full of badits, poisenous snakes, creepy spiders. Rightly the parents always argued, the kids may better stay home."
+AvatarText = "Will I finally be free? Or will I always be chased, caught, brought back home?"

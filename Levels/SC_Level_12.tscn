@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cbo8p6semgurs"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_1oxes"]
+[ext_resource type="Texture2D" uid="uid://chjkpsd47m1ya" path="res://Backgrounds/Nature4.png" id="2_1oxes"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_1oxes")
+Mask = ExtResource("2_1oxes")
+NarratorText = "In the shadows lurking, scaring the girl, wild animals unbeknownst to her. The day went to a close."
+AvatarText = "Is there redemption for me?"

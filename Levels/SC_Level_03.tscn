@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_87hqf"]
 [ext_resource type="Texture2D" uid="uid://c7d3hkk6i6fht" path="res://Backgrounds/Summer3.png" id="2_87hqf"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="3_76rr1"]
 
 [node name="Level" type="Control" unique_id=941596401]
 layout_mode = 3
@@ -12,5 +13,51 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("1_87hqf")
 Mask = ExtResource("2_87hqf")
+AvatarText = "My eyes hurt"
+
+[node name="ScInteractable_SkyEyeL" parent="." unique_id=1555687100 instance=ExtResource("3_76rr1")]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 50.0
+offset_right = 399.0
+offset_bottom = 192.0
+TextToSay = Dictionary[int, String]({
+0: "An eye in the sky...",
+1: "",
+2: ""
+})
+NarratorTextToSay = Dictionary[int, String]({
+0: "The clolorful clouds yielded a look into the calm sky, from time to time. Calmness that always directed the communities life.",
+1: "",
+2: ""
+})
+Insanity = Dictionary[int, int]({
+0: 5,
+1: 0,
+2: 0
+})
+
+[node name="ScInteractable_SkyEyeR" parent="." unique_id=977827557 instance=ExtResource("3_76rr1")]
+layout_mode = 0
+offset_left = 722.0
+offset_top = 26.0
+offset_right = 955.0
+offset_bottom = 179.0
+TextToSay = Dictionary[int, String]({
+0: "An eye in the sky...",
+1: "",
+2: ""
+})
+NarratorTextToSay = Dictionary[int, String]({
+0: "The clolorful clouds yielded a look into the calm sky, from time to time. Calmness that always directed the communities life.",
+1: "",
+2: ""
+})
+Insanity = Dictionary[int, int]({
+0: 5,
+1: 0,
+2: 0
+})

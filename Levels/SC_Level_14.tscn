@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://lnnels7oe6af"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_wbp7e"]
+[ext_resource type="Texture2D" uid="uid://hysy6bpgs5b4" path="res://Backgrounds/Nature7.png" id="2_wbp7e"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="3_8r5sw"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_wbp7e")
+Mask = ExtResource("2_wbp7e")
+NarratorText = "The ancient pillars of Kraroeg cast a dark spell on here: RETURN FROM WHENCE YOU CAME! YOU ARE NOT WELCOME HERE! LEAVE! She was cast back, against a stone."
+AvatarText = "L-let me.. Have, to, moove ooooon."
+
+[node name="ScInteractable_SorcererStone" parent="." unique_id=1555687100 instance=ExtResource("3_8r5sw")]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 260.0
+offset_right = 159.0
+offset_bottom = 376.0
+TextToSay = Dictionary[int, String]({
+0: "A freak!",
+1: "",
+2: "YOU'RE CRUEL!"
+})
+
+[node name="ScInteractable_SorcererStone2" parent="." unique_id=715714680 instance=ExtResource("3_8r5sw")]
+layout_mode = 0
+offset_left = 213.0
+offset_top = -2.0
+offset_right = 424.0
+offset_bottom = 387.0
+TextToSay = Dictionary[int, String]({
+0: "They are the freaks, not me!",
+1: "",
+2: "YOU GO AWAY!"
+})
+
+[node name="ScInteractable_SorcererStone3" parent="." unique_id=1476744694 instance=ExtResource("3_8r5sw")]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 211.0
+offset_right = 558.0
+offset_bottom = 408.0
+TextToSay = Dictionary[int, String]({
+0: "A freak!",
+1: "",
+2: "YOU'RE CRUEL!"
+})

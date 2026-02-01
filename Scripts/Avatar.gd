@@ -13,8 +13,6 @@ func move_to(position: Vector2, callback: Callable) -> void:
 
 func set_text(text: String) -> void:
 	SpeechText.text = text
-	await get_tree().create_timer(text.length() * 0.2).timeout
-	clear_text()
 
 func clear_text() -> void:
 	SpeechText.text = "";

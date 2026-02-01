@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bxoekrv6mf72t"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_3c2vs"]
+[ext_resource type="Texture2D" uid="uid://r8gae538jjy" path="res://Backgrounds/Nature8.png" id="2_3c2vs"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_3c2vs")
+Mask = ExtResource("2_3c2vs")
+NarratorText = "Go. Go away. We don't want you anymore. You're alone, always were, always will be. Unliked. GO! Over the Sea, away, into nothingness. Goodbye."
+AvatarText = "Th-the.. the Seaaa! Nnrrggaahh GO AWAY! I'LL LEAVE, have you forgotten? I TOLD YOU! What more do you want? EVERYTHING?"

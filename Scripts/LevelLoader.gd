@@ -6,6 +6,7 @@ extends Control
 var CurrentScreen = 0;
 
 signal level_changed(new_level);
+signal tried_pass_level_array_bound;
 
 func _ready() -> void:
 	if get_children().size() > 0:
@@ -15,12 +16,16 @@ func _ready() -> void:
 	Mask.texture = level_instance.Mask
 	
 func next_screen() -> void:
-	_update_screen((CurrentScreen + 1) % Screens.size())
+	_update_screen(CurrentScreen + 1)
 
 func previous_screen() -> void:
-	_update_screen((CurrentScreen - 1) % Screens.size())
+	_update_screen(CurrentScreen - 1)
 
 func _update_screen(new_screen: int) -> void:
+	if new_screen == Screens.size():
+		tried_pass_level_array_bound.emit()
+		return
+	print("New Screen: ", new_screen)
 	if new_screen != CurrentScreen:
 		if get_children().size() > 0:
 			remove_child(get_child(0))

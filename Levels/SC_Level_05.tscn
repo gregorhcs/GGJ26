@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dg1a7r2d4ndox"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_nncao"]
+[ext_resource type="Texture2D" uid="uid://dkc5x2fft5vai" path="res://Backgrounds/Summer5.png" id="2_nncao"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="3_u18le"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_nncao")
+Mask = ExtResource("2_nncao")
+NarratorText = "High upon the hilltop the kids used to play, to the dismay of their parents, but in childish fashion, the young rascals did it anyway, a small price to pay for the independence gained."
+AvatarText = "Being pushed off cliffs, good times, yeah, yeah."
+
+[node name="ScInteractable_Hill" parent="." unique_id=1555687100 instance=ExtResource("3_u18le")]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 120.0
+offset_right = 1017.0
+offset_bottom = 395.0
+TextToSay = Dictionary[int, String]({
+0: "There it stands, a constant reminder of my inability to resist.",
+1: "The rocks I threw at my sister! Still here.",
+2: ""
+})

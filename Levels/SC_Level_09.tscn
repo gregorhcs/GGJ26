@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c2v5ix0a8sejp"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_p3ai2"]
+[ext_resource type="Texture2D" uid="uid://bljpams7k08k6" path="res://Backgrounds/Nature1.png" id="2_p3ai2"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="3_jwnw3"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_p3ai2")
+Mask = ExtResource("2_p3ai2")
+NarratorText = "The great trees in front of her loomed. They seemed climbable."
+AvatarText = "I won't climb up there! I won't climb! I swore this to myself"
+
+[node name="ScInteractable_Trees" parent="." unique_id=1555687100 instance=ExtResource("3_jwnw3")]
+layout_mode = 0
+offset_left = 274.0
+offset_top = -4.0
+offset_right = 979.0
+offset_bottom = 464.0
+TextToSay = Dictionary[int, String]({
+0: "Those guys scare me. Got pushed down one too many times.",
+1: "",
+2: ""
+})
+NarratorTextToSay = Dictionary[int, String]({
+0: "The old trees reminded her of home.",
+1: "",
+2: ""
+})

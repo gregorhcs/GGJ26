@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bslup5tebbu03" path="res://Scripts/Avatar.gd" id="1_efpmx"]
 [ext_resource type="Texture2D" uid="uid://bkoqw2stexwg6" path="res://Prefabs/SS_Avatar.png" id="1_pav11"]
+[ext_resource type="FontFile" uid="uid://d2lq7f6wt2215" path="res://Amarante-Regular.ttf" id="3_5tdwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pav11"]
 atlas = ExtResource("1_pav11")
@@ -224,4 +225,5 @@ offset_bottom = -61.0
 grow_vertical = 0
 size_flags_horizontal = 0
 theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_5tdwq")
 text = "Say something, see something!"

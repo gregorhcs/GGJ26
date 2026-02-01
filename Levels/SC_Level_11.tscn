@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dgrrfa6806mfs"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_y0sd7"]
+[ext_resource type="Texture2D" uid="uid://do64bb16d2wb6" path="res://Backgrounds/Nature3.png" id="2_y0sd7"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_y0sd7")
+Mask = ExtResource("2_y0sd7")
+NarratorText = "She was lost, and she knew it. It would be hard getting back home now, but it was time. Her family was waiting."
+AvatarText = "It's lucky that they hate me. Who wouldn't hate my demons? Who wouldn't hate me?"

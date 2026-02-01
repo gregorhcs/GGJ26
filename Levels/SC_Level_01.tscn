@@ -13,8 +13,48 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("1_kiw7w")
 Mask = ExtResource("7_86st8")
+
+[node name="ScInteractable_Tree" parent="." unique_id=1555687100 instance=ExtResource("9_wcyga")]
+layout_mode = 0
+offset_left = 233.0
+offset_top = -4.0
+offset_right = 493.0
+offset_bottom = 373.0
+TextToSay = Dictionary[int, String]({
+0: "I wish the tree were cut down.",
+1: "",
+2: ""
+})
+NarratorTextToSay = Dictionary[int, String]({
+0: "The old tree, stage for many a play the kids had done in their youth.",
+1: "",
+2: ""
+})
+
+[node name="ScInteractable_House" parent="." unique_id=2014758104 instance=ExtResource("9_wcyga")]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 119.0
+offset_right = 1025.0
+offset_bottom = 406.0
+TextToSay = Dictionary[int, String]({
+0: "No, no, NO! I'm not going back there!",
+1: "",
+2: ""
+})
+NarratorTextToSay = Dictionary[int, String]({
+0: "Mary was fond of her home, her family, her friends. Everything was well.",
+1: "",
+2: ""
+})
+Insanity = Dictionary[int, int]({
+0: 3,
+1: 10,
+2: 0
+})
 
 [node name="ScInteractable_Cow" parent="." unique_id=1889477931 instance=ExtResource("9_wcyga")]
 custom_minimum_size = Vector2(125, 75)
@@ -34,7 +74,12 @@ pivot_offset = Vector2(75, 75)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 TextToSay = Dictionary[int, String]({
-0: "She looks happy",
+0: "At least she looks happy.",
 1: "Yeah let's visit the Berta the Brown.",
 2: "Hey cow, having a good day in this world?"
+})
+NarratorTextToSay = Dictionary[int, String]({
+0: "The family's father stemmed form a long line of farmers. Even in rough economical times, he still managed to keep his business running, to the joy of his wife and children who rooted for his success.",
+1: "",
+2: ""
 })

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://3qj6qtdqodqp"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_g840b"]
+[ext_resource type="Texture2D" uid="uid://ctattbbsf8k7u" path="res://Backgrounds/Nature6.png" id="2_g840b"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="3_t6t0f"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_g840b")
+Mask = ExtResource("2_g840b")
+NarratorText = "The beautiful shimmer of polar lights - like a blessing on this young family."
+AvatarText = "Why do humans never explain their cruelty?"
+
+[node name="ScInteractable_MountainTop" parent="." unique_id=1555687100 instance=ExtResource("3_t6t0f")]
+layout_mode = 0
+offset_left = 646.0
+offset_top = 239.0
+offset_right = 831.0
+offset_bottom = 324.0
+TextToSay = Dictionary[int, String]({
+0: "Maybe I'll be safe on a mountaintop?",
+1: "",
+2: ""
+})
+
+[node name="ScInteractable_MountainTop2" parent="." unique_id=906161115 instance=ExtResource("3_t6t0f")]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 333.0
+offset_right = 189.0
+offset_bottom = 392.0
+TextToSay = Dictionary[int, String]({
+0: "Too far away.",
+1: "",
+2: ""
+})

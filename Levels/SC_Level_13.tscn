@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bjfjocibrmtp1"]
+
+[ext_resource type="Script" uid="uid://ctpes8p37ns8i" path="res://Scripts/Level.gd" id="1_0htxf"]
+[ext_resource type="Texture2D" uid="uid://b2uxv1beoitpv" path="res://Backgrounds/Summer6.png" id="2_0htxf"]
+[ext_resource type="PackedScene" uid="uid://bt1mkr28sjdjb" path="res://Prefabs/SC_Interactable.tscn" id="3_s06iw"]
+
+[node name="Level" type="Control" unique_id=941596401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_0htxf")
+Mask = ExtResource("2_0htxf")
+NarratorText = "A godly boulder, watching over the VALLEY OF NO RETURN. Why would she leave her dear ones she spent a lifetime with?"
+AvatarText = "W-Why does my head hurt so much?"
+
+[node name="ScInteractable" parent="." unique_id=1555687100 instance=ExtResource("3_s06iw")]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 300.0
+offset_right = 834.0
+offset_bottom = 426.0
+TextToSay = Dictionary[int, String]({
+0: "D-didn't I see this boulder before?",
+1: "",
+2: ""
+})
+NarratorTextToSay = Dictionary[int, String]({
+0: "The girl was dazed and confused. It was time to go home.",
+1: "",
+2: ""
+})
