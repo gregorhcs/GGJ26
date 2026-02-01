@@ -17,20 +17,21 @@ func set_text(text: String) -> void:
 func clear_text() -> void:
 	SpeechText.text = "";
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_goal = position
 	clear_text()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var delta_to_goal = current_goal - position
-	
-	if position != current_goal:
+	if (current_goal - position).length() > 1.0:
 		position += delta * delta_to_goal.normalized() * 100
 		is_moving = true
-		AnimatedAvatarSprite.flip_h = delta_to_goal.x > 0
+		if AnimatedAvatarSprite.animation != "run":
+			AnimatedAvatarSprite.flip_h = delta_to_goal.x > 0
+			AnimatedAvatarSprite.play("run")
 	else:
 		if is_moving and current_callback.is_valid():
 			current_callback.call()
 		is_moving = false
+		if AnimatedAvatarSprite.animation != "default":
+			AnimatedAvatarSprite.play("default")

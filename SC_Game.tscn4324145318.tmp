@@ -29,7 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://bjfjocibrmtp1" path="res://Levels/SC_Level_13.tscn" id="22_e3aha"]
 [ext_resource type="PackedScene" uid="uid://lnnels7oe6af" path="res://Levels/SC_Level_14.tscn" id="23_m736i"]
 [ext_resource type="PackedScene" uid="uid://bxoekrv6mf72t" path="res://Levels/SC_Level_15.tscn" id="24_dv6xv"]
-[ext_resource type="Script" uid="uid://cu5urquj2prji" path="res://Scripts/VolumeSlider.gd" id="30_n8vhl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mnbkb"]
 shader = ExtResource("5_qbhns")
@@ -93,9 +92,9 @@ LevelLoader = NodePath("VBoxContainer/Control/LevelLoader")
 AvatarControl = NodePath("VBoxContainer/Control/ScAvatar")
 Mask = NodePath("VBoxContainer/Control/BackgroundImage")
 CommandButtons = {
-0: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer/RichTextLabelLook"),
-1: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer/RichTextLabelWalk"),
-2: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer/RichTextLabelTalk")
+0: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer/RichTextLabelLook"),
+1: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer/RichTextLabelWalk"),
+2: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer/RichTextLabelTalk")
 }
 NarratorTextLabel = NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer2/NarratorSpeechLabel")
 CrackAudioPlayer = NodePath("AudioStreamPlayer_Crack")
@@ -263,16 +262,12 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer" unique_id=1592189205]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3" unique_id=535256467]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer" unique_id=329257446]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3" unique_id=329257446]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="RichTextLabelWalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer" unique_id=1193404684]
+[node name="RichTextLabelWalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer" unique_id=1193404684]
 custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -286,7 +281,7 @@ theme_override_font_sizes/mono_font_size = 24
 text = "Walk"
 fit_content = true
 
-[node name="RichTextLabelTalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer" unique_id=1468253758]
+[node name="RichTextLabelTalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer" unique_id=1468253758]
 custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -300,7 +295,7 @@ theme_override_font_sizes/mono_font_size = 24
 text = "Talk"
 fit_content = true
 
-[node name="RichTextLabelLook" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer" unique_id=577303019]
+[node name="RichTextLabelLook" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer" unique_id=577303019]
 custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -313,40 +308,6 @@ theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
 text = "Look"
 fit_content = true
-
-[node name="Control" type="Control" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer" unique_id=1814740268]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer" unique_id=1627716997]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2" unique_id=1935261875]
-custom_minimum_size = Vector2(220, 22.78)
-layout_mode = 2
-color = Color(0.19076231, 0.19076234, 0.19076231, 1)
-
-[node name="BusVolumeSlider" type="HSlider" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/ColorRect" unique_id=1172009574]
-layout_mode = 0
-offset_left = 126.0
-offset_top = 6.0
-offset_right = 212.70999
-offset_bottom = 26.0
-value = 50.0
-script = ExtResource("30_n8vhl")
-metadata/_custom_type_script = "uid://cu5urquj2prji"
-
-[node name="Label" type="Label" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/ColorRect" unique_id=873970485]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 3.0
-offset_right = 119.0
-offset_bottom = 26.0
-text = "Audio Volume:"
-
-[node name="Button" type="Button" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2" unique_id=1390123214]
-layout_mode = 2
-text = "Exit"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3" unique_id=157282270]
 layout_mode = 2
@@ -367,4 +328,3 @@ text = "Life was good. Mary lived had arrived in a place of well-faring and peac
 
 [connection signal="level_changed" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_level_changed"]
 [connection signal="tried_pass_level_array_bound" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_tried_pass_level_array_bound"]
-[connection signal="pressed" from="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/Button" to="." method="_on_exit_button_pressed"]

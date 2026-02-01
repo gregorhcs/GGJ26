@@ -39,7 +39,9 @@ func increase_insanity(amount: int) -> void:
 		LevelChangeTrigger.visible = false
 		AvatarControl.clear_text()
 		set_narrator_text("In her insanity, she tried to go places no human dared to go. Why didn't she stay in peace? Why did she have to go?")
-# Called when the node enters the scene tree for the first time.
+		for label in CommandButtons.values():
+			label.visible = false
+
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("interactables"):
 		node.is_available.connect(_on_interactable_available)
@@ -106,3 +108,9 @@ func _on_level_loader_tried_pass_level_array_bound() -> void:
 	LevelChangeTrigger.visible = false
 	AvatarControl.set_text("Am I - free?")
 	clear_narrator_text()
+	for label in CommandButtons.values():
+		label.visible = false
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
