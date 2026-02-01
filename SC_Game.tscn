@@ -81,7 +81,7 @@ shader_parameter/color = Vector4(1, 1, 1, 0.53)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
-[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer", "BackgroundBlack", "BackgroundStars", "BackgroundSunrays", "BackgroundMoonrays", "LevelChangeTrigger")]
+[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer", "BackgroundBlack", "BackgroundStars", "BackgroundSunrays", "BackgroundMoonrays", "LevelChangeTrigger", "SpawnPoint")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,6 +104,7 @@ BackgroundStars = NodePath("VBoxContainer/Control/ColorRectStars")
 BackgroundSunrays = NodePath("VBoxContainer/Control/Sunrays")
 BackgroundMoonrays = NodePath("VBoxContainer/Control/Moonrays")
 LevelChangeTrigger = NodePath("VBoxContainer/Control/HBoxContainer/ScInteractable_LevelChange_Right")
+SpawnPoint = NodePath("VBoxContainer/Control/SpawnPoint")
 
 [node name="AudioStreamPlayer_LostLoop" type="AudioStreamPlayer" parent="." unique_id=1231370830]
 stream = ExtResource("11_h7lci")
@@ -130,13 +131,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Control" type="Control" parent="VBoxContainer" unique_id=680699202]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
-mouse_filter = 1
+mouse_filter = 2
+
+[node name="SpawnPoint" type="Control" parent="VBoxContainer/Control" unique_id=517036266]
+anchors_preset = 0
+offset_left = 82.0
+offset_top = 468.0
+offset_right = 82.0
+offset_bottom = 468.0
 
 [node name="ColorRectStars" type="ColorRect" parent="VBoxContainer/Control" unique_id=870773617]
 material = SubResource("ShaderMaterial_mnbkb")
@@ -182,6 +191,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 0
 texture = ExtResource("8_2m55x")
 expand_mode = 3
 stretch_mode = 6
@@ -246,6 +256,7 @@ ChangeLevelRight = true
 [node name="ColorRectBot" type="ColorRect" parent="VBoxContainer" unique_id=301630333]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ColorRectBot" unique_id=2114020488]
@@ -365,6 +376,7 @@ theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
 text = "Life was good. Mary lived had arrived in a place of well-faring and peace. Many envied her for her luck."
 
+[connection signal="gui_input" from="VBoxContainer/Control/BackgroundImage" to="." method="_on_background_image_gui_input"]
 [connection signal="level_changed" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_level_changed"]
 [connection signal="tried_pass_level_array_bound" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_tried_pass_level_array_bound"]
 [connection signal="pressed" from="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/Button" to="." method="_on_exit_button_pressed"]

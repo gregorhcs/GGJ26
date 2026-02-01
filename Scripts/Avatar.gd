@@ -26,8 +26,8 @@ func _process(delta: float) -> void:
 	if (current_goal - position).length() > 1.0:
 		position += delta * delta_to_goal.normalized() * 100
 		is_moving = true
+		AnimatedAvatarSprite.flip_h = delta_to_goal.x > 0
 		if AnimatedAvatarSprite.animation != "run":
-			AnimatedAvatarSprite.flip_h = delta_to_goal.x > 0
 			AnimatedAvatarSprite.play("run")
 	else:
 		if is_moving and current_callback.is_valid():

@@ -11,6 +11,7 @@ extends Control
 @export var BackgroundSunrays : ColorRect
 @export var BackgroundMoonrays : ColorRect
 @export var LevelChangeTrigger : Control
+@export var SpawnPoint : Control
 
 const Date = preload("res://Scripts/Enums.gd")
 
@@ -73,12 +74,6 @@ func _on_interactable_request(node, command: GameEnums.Command):
 		set_narrator_text(node.NarratorTextToSay[command])
 	
 	increase_insanity(node.Insanity[command])
-	
-func _on_background_image_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
-		AvatarControl.move_to(event.position, func(): pass)
-		AvatarControl.set_text("Okay..")
-		increase_insanity(1)
 
 func get_all_descendants(node: Node) -> Array:
 	var result := []
@@ -98,6 +93,7 @@ func _on_level_loader_level_changed(new_level) -> void:
 		set_narrator_text(new_level.NarratorText)
 	if !new_level.AvatarText.is_empty():
 		AvatarControl.set_text(new_level.AvatarText)
+	AvatarControl.set_position(SpawnPoint.position)
 
 
 func _on_level_loader_tried_pass_level_array_bound() -> void:
@@ -114,3 +110,10 @@ func _on_level_loader_tried_pass_level_array_bound() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_background_image_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		AvatarControl.move_to(event.position, func(): pass)
+		AvatarControl.set_text("Okay..")
+		increase_insanity(1)
