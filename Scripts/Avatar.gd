@@ -2,6 +2,7 @@ extends Node2D
 
 @export var AnimatedAvatarSprite: AnimatedSprite2D
 @export var SpeechText: RichTextLabel
+@export var Speed: float
 
 var current_goal = Vector2(0, 0)
 var current_callback: Callable
@@ -23,8 +24,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var delta_to_goal = current_goal - position
-	if (current_goal - position).length() > 1.0:
-		position += delta * delta_to_goal.normalized() * 100
+	if (current_goal - position).length() > 10.0:
+		position += delta * delta_to_goal.normalized() *Speed
 		is_moving = true
 		AnimatedAvatarSprite.flip_h = delta_to_goal.x > 0
 		if AnimatedAvatarSprite.animation != "run":

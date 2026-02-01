@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://bjfjocibrmtp1" path="res://Levels/SC_Level_13.tscn" id="22_e3aha"]
 [ext_resource type="PackedScene" uid="uid://lnnels7oe6af" path="res://Levels/SC_Level_14.tscn" id="23_m736i"]
 [ext_resource type="PackedScene" uid="uid://bxoekrv6mf72t" path="res://Levels/SC_Level_15.tscn" id="24_dv6xv"]
+[ext_resource type="Shader" uid="uid://brmhvow12n6ld" path="res://Shaders/SH_Pixel.gdshader" id="29_binv8"]
+[ext_resource type="Texture2D" uid="uid://bcgqqn783cubo" path="res://LostLogo.png" id="29_ng7nl"]
 [ext_resource type="Script" uid="uid://cu5urquj2prji" path="res://Scripts/VolumeSlider.gd" id="30_n8vhl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mnbkb"]
@@ -81,7 +83,11 @@ shader_parameter/color = Vector4(1, 1, 1, 0.53)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
-[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer", "BackgroundBlack", "BackgroundStars", "BackgroundSunrays", "BackgroundMoonrays", "LevelChangeTrigger", "SpawnPoint")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44gmh"]
+shader = ExtResource("29_binv8")
+shader_parameter/pixel_size = 4.0
+
+[node name="GameDirectorControl" type="Control" unique_id=941596401 node_paths=PackedStringArray("Game", "MainMenu", "LevelLoader", "AvatarControl", "Mask", "CommandButtons", "NarratorTextLabel", "CrackAudioPlayer", "BackgroundBlack", "BackgroundStars", "BackgroundSunrays", "BackgroundMoonrays", "LevelChangeTrigger", "SpawnPoint")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,9 +95,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_llf3c")
-LevelLoader = NodePath("VBoxContainer/Control/LevelLoader")
-AvatarControl = NodePath("VBoxContainer/Control/ScAvatar")
-Mask = NodePath("VBoxContainer/Control/BackgroundImage")
+Game = NodePath("VBoxContainer/Game")
+MainMenu = NodePath("VBoxContainer/MainMenu")
+LevelLoader = NodePath("VBoxContainer/Game/LevelLoader")
+AvatarControl = NodePath("VBoxContainer/Game/ScAvatar")
+Mask = NodePath("VBoxContainer/Game/BackgroundImage")
 CommandButtons = {
 0: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer/RichTextLabelLook"),
 1: NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer/RichTextLabelWalk"),
@@ -99,12 +107,12 @@ CommandButtons = {
 }
 NarratorTextLabel = NodePath("VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer2/NarratorSpeechLabel")
 CrackAudioPlayer = NodePath("AudioStreamPlayer_Crack")
-BackgroundBlack = NodePath("VBoxContainer/Control/ColorRectBlack")
-BackgroundStars = NodePath("VBoxContainer/Control/ColorRectStars")
-BackgroundSunrays = NodePath("VBoxContainer/Control/Sunrays")
-BackgroundMoonrays = NodePath("VBoxContainer/Control/Moonrays")
-LevelChangeTrigger = NodePath("VBoxContainer/Control/HBoxContainer/ScInteractable_LevelChange_Right")
-SpawnPoint = NodePath("VBoxContainer/Control/SpawnPoint")
+BackgroundBlack = NodePath("VBoxContainer/Game/ColorRectBlack")
+BackgroundStars = NodePath("VBoxContainer/Game/ColorRectStars")
+BackgroundSunrays = NodePath("VBoxContainer/Game/Sunrays")
+BackgroundMoonrays = NodePath("VBoxContainer/Game/Moonrays")
+LevelChangeTrigger = NodePath("VBoxContainer/Game/HBoxContainer/ScInteractable_LevelChange_Right")
+SpawnPoint = NodePath("VBoxContainer/Game/SpawnPoint")
 
 [node name="AudioStreamPlayer_LostLoop" type="AudioStreamPlayer" parent="." unique_id=1231370830]
 stream = ExtResource("11_h7lci")
@@ -134,20 +142,21 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="Control" type="Control" parent="VBoxContainer" unique_id=680699202]
+[node name="Game" type="Control" parent="VBoxContainer" unique_id=680699202]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 2
 
-[node name="SpawnPoint" type="Control" parent="VBoxContainer/Control" unique_id=517036266]
+[node name="SpawnPoint" type="Control" parent="VBoxContainer/Game" unique_id=517036266]
 anchors_preset = 0
 offset_left = 82.0
 offset_top = 468.0
 offset_right = 82.0
 offset_bottom = 468.0
 
-[node name="ColorRectStars" type="ColorRect" parent="VBoxContainer/Control" unique_id=870773617]
+[node name="ColorRectStars" type="ColorRect" parent="VBoxContainer/Game" unique_id=870773617]
 material = SubResource("ShaderMaterial_mnbkb")
 layout_mode = 1
 anchors_preset = 15
@@ -159,7 +168,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Control/ColorRectStars" unique_id=72964977]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Game/ColorRectStars" unique_id=72964977]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -170,7 +179,7 @@ grow_vertical = 0
 texture = ExtResource("7_joo0g")
 expand_mode = 5
 
-[node name="ColorRectBlack" type="ColorRect" parent="VBoxContainer/Control" unique_id=1409622622]
+[node name="ColorRectBlack" type="ColorRect" parent="VBoxContainer/Game" unique_id=1409622622]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,7 +191,7 @@ size_flags_stretch_ratio = 4.0
 mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
-[node name="BackgroundImage" type="TextureRect" parent="VBoxContainer/Control" unique_id=1734563491]
+[node name="BackgroundImage" type="TextureRect" parent="VBoxContainer/Game" unique_id=1734563491]
 material = SubResource("ShaderMaterial_oledq")
 layout_mode = 1
 anchors_preset = 15
@@ -196,7 +205,7 @@ texture = ExtResource("8_2m55x")
 expand_mode = 3
 stretch_mode = 6
 
-[node name="LevelLoader" type="Control" parent="VBoxContainer/Control" unique_id=958787485 node_paths=PackedStringArray("Mask")]
+[node name="LevelLoader" type="Control" parent="VBoxContainer/Game" unique_id=958787485 node_paths=PackedStringArray("Mask")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -208,10 +217,10 @@ script = ExtResource("6_mnbkb")
 Mask = NodePath("../BackgroundImage")
 Screens = Array[PackedScene]([ExtResource("9_h7lci"), ExtResource("7_nkpkg"), ExtResource("8_h7lci"), ExtResource("13_2m55x"), ExtResource("14_joo0g"), ExtResource("15_n8vhl"), ExtResource("16_ng7nl"), ExtResource("17_binv8"), ExtResource("18_44gmh"), ExtResource("19_crfl4"), ExtResource("20_uwf21"), ExtResource("21_cojy8"), ExtResource("22_e3aha"), ExtResource("23_m736i"), ExtResource("24_dv6xv")])
 
-[node name="ScAvatar" parent="VBoxContainer/Control" unique_id=148740442 instance=ExtResource("6_tte00")]
+[node name="ScAvatar" parent="VBoxContainer/Game" unique_id=148740442 instance=ExtResource("6_tte00")]
 position = Vector2(670, 490)
 
-[node name="Sunrays" type="ColorRect" parent="VBoxContainer/Control" unique_id=413293893]
+[node name="Sunrays" type="ColorRect" parent="VBoxContainer/Game" unique_id=413293893]
 material = SubResource("ShaderMaterial_gdmih")
 layout_mode = 1
 anchors_preset = 15
@@ -221,7 +230,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Moonrays" type="ColorRect" parent="VBoxContainer/Control" unique_id=1481590445]
+[node name="Moonrays" type="ColorRect" parent="VBoxContainer/Game" unique_id=1481590445]
 visible = false
 material = SubResource("ShaderMaterial_2g1mr")
 layout_mode = 1
@@ -232,7 +241,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control" unique_id=472117419]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Game" unique_id=472117419]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -241,7 +250,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ScInteractable_LevelChange_Right" parent="VBoxContainer/Control/HBoxContainer" unique_id=873706535 instance=ExtResource("8_mnbkb")]
+[node name="ScInteractable_LevelChange_Right" parent="VBoxContainer/Game/HBoxContainer" unique_id=873706535 instance=ExtResource("8_mnbkb")]
 z_index = 2
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -252,6 +261,39 @@ TextToSay = Dictionary[int, String]({
 2: ""
 })
 ChangeLevelRight = true
+
+[node name="MainMenu" type="ColorRect" parent="VBoxContainer" unique_id=1031921375]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MainMenu" unique_id=140886463]
+material = SubResource("ShaderMaterial_44gmh")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -257.0
+offset_right = 390.3333
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("29_ng7nl")
+expand_mode = 3
+
+[node name="ButtonStart" type="Button" parent="VBoxContainer/MainMenu" unique_id=1316052941]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 421.0
+offset_right = 687.0
+offset_bottom = 464.0
+theme_override_fonts/font = ExtResource("16_gdmih")
+text = "Start"
 
 [node name="ColorRectBot" type="ColorRect" parent="VBoxContainer" unique_id=301630333]
 layout_mode = 2
@@ -284,6 +326,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="RichTextLabelWalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer" unique_id=1193404684]
+visible = false
 custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -298,6 +341,7 @@ text = "Walk"
 fit_content = true
 
 [node name="RichTextLabelTalk" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer" unique_id=1468253758]
+visible = false
 custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -312,6 +356,7 @@ text = "Talk"
 fit_content = true
 
 [node name="RichTextLabelLook" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer" unique_id=577303019]
+visible = false
 custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -349,14 +394,16 @@ metadata/_custom_type_script = "uid://cu5urquj2prji"
 
 [node name="Label" type="Label" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/ColorRect" unique_id=873970485]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 3.0
-offset_right = 119.0
-offset_bottom = 26.0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 125.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("16_gdmih")
 text = "Audio Volume:"
 
 [node name="Button" type="Button" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2" unique_id=1390123214]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("16_gdmih")
 text = "Exit"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3" unique_id=157282270]
@@ -365,6 +412,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
 [node name="NarratorSpeechLabel" type="RichTextLabel" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/HBoxContainer2" unique_id=1619284738]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0.5019608, 0.7921569, 0.31764707, 1)
@@ -376,7 +424,8 @@ theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
 text = "Life was good. Mary lived had arrived in a place of well-faring and peace. Many envied her for her luck."
 
-[connection signal="gui_input" from="VBoxContainer/Control/BackgroundImage" to="." method="_on_background_image_gui_input"]
-[connection signal="level_changed" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_level_changed"]
-[connection signal="tried_pass_level_array_bound" from="VBoxContainer/Control/LevelLoader" to="." method="_on_level_loader_tried_pass_level_array_bound"]
+[connection signal="gui_input" from="VBoxContainer/Game/BackgroundImage" to="." method="_on_background_image_gui_input"]
+[connection signal="level_changed" from="VBoxContainer/Game/LevelLoader" to="." method="_on_level_loader_level_changed"]
+[connection signal="tried_pass_level_array_bound" from="VBoxContainer/Game/LevelLoader" to="." method="_on_level_loader_tried_pass_level_array_bound"]
+[connection signal="pressed" from="VBoxContainer/MainMenu/ButtonStart" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/Button" to="." method="_on_exit_button_pressed"]

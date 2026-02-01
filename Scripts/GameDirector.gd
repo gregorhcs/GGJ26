@@ -1,5 +1,8 @@
 extends Control
 
+@export var Game : Control
+@export var MainMenu : Control
+
 @export var LevelLoader : Node
 @export var AvatarControl : Node
 @export var Mask : TextureRect
@@ -117,3 +120,11 @@ func _on_background_image_gui_input(event: InputEvent) -> void:
 		AvatarControl.move_to(event.position, func(): pass)
 		AvatarControl.set_text("Okay..")
 		increase_insanity(1)
+
+
+func _on_button_start_pressed() -> void:
+	MainMenu.visible = false
+	Game.visible = true
+	for label in CommandButtons.values():
+		label.visible = false
+	NarratorTextLabel.visible = true
