@@ -37,10 +37,13 @@ func _on_button_mouse_entered() -> void:
 		var command_value = GameEnums.Command[command_name]
 		if !TextToSay[command_value].is_empty():
 			is_available.emit(self, command_value)
-
+	if ChangeLevelLeft || ChangeLevelRight:
+		is_available.emit(self, GameEnums.Command.WALK)
 
 func _on_button_mouse_exited() -> void:
 	for command_name in GameEnums.Command.keys():
 		var command_value = GameEnums.Command[command_name]
 		if !TextToSay[command_value].is_empty():
 			is_unavailable.emit(self, command_value)
+	if ChangeLevelLeft || ChangeLevelRight:
+		is_unavailable.emit(self, GameEnums.Command.WALK)

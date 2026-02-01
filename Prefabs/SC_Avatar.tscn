@@ -208,7 +208,7 @@ Speed = 150.0
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dpbgw")
 animation = &"run"
-frame_progress = 0.8163843
+frame_progress = 0.40546757
 offset = Vector2(0, -32)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=431760605]

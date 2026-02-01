@@ -10,13 +10,22 @@ config_version=5
 
 [application]
 
-config/name="GGJ26"
+config/name="Lost"
 run/main_scene="uid://cvy56brjoeda"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.08468998, 0.08468992, 0.08468989, 1)
+boot_splash/image="uid://or5gig6sdxqu"
+config/icon="uid://bcgqqn783cubo"
+
+[audio]
+
+buses/default_bus_layout="uid://ch8r6u24fgg03"
 
 [display]
 
+window/size/mode=4
+window/size/resizable=false
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 
 [global_group]

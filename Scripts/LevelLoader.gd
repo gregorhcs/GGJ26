@@ -12,7 +12,7 @@ signal tried_pass_level_array_bound;
 func _ready() -> void:
 	if get_children().size() > 0:
 		remove_child(get_child(0))
-	var CurrentLevelInstance = Screens[0].instantiate()
+	CurrentLevelInstance = Screens[0].instantiate()
 	add_child(CurrentLevelInstance)
 	Mask.texture = CurrentLevelInstance.Mask
 	
