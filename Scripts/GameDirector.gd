@@ -45,6 +45,9 @@ func increase_insanity(amount: int) -> void:
 		set_narrator_text("In her insanity, she tried to go places no human dared to go. Why didn't she stay in peace? Why did she have to go?")
 		for label in CommandButtons.values():
 			label.visible = false
+		for node in get_all_descendants(LevelLoader.CurrentLevelInstance):
+			if node.is_in_group("interactables"):
+				node.visible = false
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("interactables"):
@@ -109,6 +112,9 @@ func _on_level_loader_tried_pass_level_array_bound() -> void:
 	clear_narrator_text()
 	for label in CommandButtons.values():
 		label.visible = false
+	for node in get_all_descendants(LevelLoader.CurrentLevelInstance):
+		if node.is_in_group("interactables"):
+			node.visible = false
 
 
 func _on_exit_button_pressed() -> void:
@@ -126,5 +132,28 @@ func _on_button_start_pressed() -> void:
 	MainMenu.visible = false
 	Game.visible = true
 	for label in CommandButtons.values():
-		label.visible = false
+		label.visible = true
 	NarratorTextLabel.visible = true
+
+
+func _on_reset_button_pressed() -> void:
+	MainMenu.visible = true
+	Game.visible = false
+	for label in CommandButtons.values():
+		label.visible = false
+	NarratorTextLabel.visible = false
+	LevelLoader.set_screen(0)
+	CurrentInsanity = 0
+	Mask.material.set_shader_parameter("CRACK_profile", 0.0)
+	
+	BackgroundSunrays.visible = true
+	BackgroundMoonrays.visible = false
+	Mask.visible = true
+	BackgroundBlack.visible = true
+	LevelChangeTrigger.visible = true
+	
+	AvatarControl.set_position(SpawnPoint.position)
+	
+	for node in get_all_descendants(LevelLoader.CurrentLevelInstance):
+		if node.is_in_group("interactables"):
+			node.visible = true

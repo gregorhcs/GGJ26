@@ -295,6 +295,24 @@ offset_bottom = 464.0
 theme_override_fonts/font = ExtResource("16_gdmih")
 text = "Start"
 
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/MainMenu" unique_id=1237982591]
+z_index = 1
+layout_mode = 0
+offset_left = 883.0
+offset_top = 528.0
+offset_right = 1137.0
+offset_bottom = 633.0
+theme_override_colors/default_color = Color(0.5489626, 0.5489626, 0.54896253, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "Credits:
+- Gregor Sönnichsen 	Code, Tech Art, Audio, Writing
+- Setry 							Character Art
+- ??			 						Environment Art
+- Karolina Lach 			Font
+- artunicore 					God Rays Shader
+- FabriceNeyret2 			Marble Cracks Shader"
+autowrap_mode = 2
+
 [node name="ColorRectBot" type="ColorRect" parent="VBoxContainer" unique_id=301630333]
 layout_mode = 2
 size_flags_vertical = 3
@@ -406,6 +424,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("16_gdmih")
 text = "Exit"
 
+[node name="ResetButton" type="Button" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2" unique_id=1684393221]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("16_gdmih")
+text = "Reset"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3" unique_id=157282270]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -429,3 +452,4 @@ text = "Life was good. Mary lived had arrived in a place of well-faring and peac
 [connection signal="tried_pass_level_array_bound" from="VBoxContainer/Game/LevelLoader" to="." method="_on_level_loader_tried_pass_level_array_bound"]
 [connection signal="pressed" from="VBoxContainer/MainMenu/ButtonStart" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/Button" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRectBot/MarginContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/ResetButton" to="." method="_on_reset_button_pressed"]
